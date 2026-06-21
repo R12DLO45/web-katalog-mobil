@@ -1,121 +1,104 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React from 'react';
+import { Search, MapPin, Moon, CarFront, LayoutGrid } from 'lucide-react';
+import mobilHero from './assets/mobil-hero.png';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="min-h-screen bg-slate-50 font-sans text-gray-800">
+      
+      {/* 1. TOP BAR (Bagian paling atas yang gelap) */}
+      <div className="bg-[#1e293b] text-gray-300 text-sm py-2 px-8 flex justify-between items-center">
+        <div className="flex items-center space-x-6">
+          <span className="flex items-center gap-1 hover:text-white cursor-pointer"><MapPin size={16} /> Indonesia</span>
+          <span className="hover:text-white cursor-pointer">Tentang Kami</span>
+          <span className="hover:text-white cursor-pointer">Kontak</span>
+          <span className="hover:text-white cursor-pointer">Sitemap</span>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+        <div className="flex items-center space-x-4">
+          <span className="flex items-center gap-1 cursor-pointer hover:text-white">Dark Mode <Moon size={16} /></span>
+          <div className="flex space-x-3 border-l border-gray-600 pl-4">
+          </div>
+        </div>
+      </div>
+
+      {/* 2. NAVBAR (Logo, Menu, dan Pencarian) */}
+      <nav className="bg-white px-8 py-4 flex justify-between items-center border-b border-gray-200 sticky top-0 z-50">
+        <div className="flex items-center gap-2 text-blue-600">
+          <CarFront size={32} strokeWidth={2.5} />
+          <span className="text-2xl font-bold text-gray-900 tracking-tight">Katalog<span className="text-blue-600">Mobil</span></span>
+        </div>
+        
+        <ul className="flex space-x-8 font-medium text-gray-600">
+          <li className="text-blue-600 border-b-2 border-blue-600 pb-1 cursor-pointer">Beranda</li>
+          <li className="hover:text-blue-600 cursor-pointer flex items-center gap-1">Katalog <span className="text-xs">▼</span></li>
+          <li className="hover:text-blue-600 cursor-pointer">Merek</li>
+          <li className="hover:text-blue-600 cursor-pointer">Berita</li>
+          <li className="hover:text-blue-600 cursor-pointer">Perbandingan</li>
+        </ul>
+
+        <div className="relative">
+          <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <input 
+            type="text" 
+            placeholder="Cari mobil, merek, atau tipe..." 
+            className="pl-10 pr-4 py-2 bg-gray-100 rounded-full text-sm w-72 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+          />
+        </div>
+      </nav>
+
+      {/* 3. HERO SECTION (Banner Utama) */}
+      <main className="max-w-7xl mx-auto px-8 pt-12 pb-16 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+        {/* Latar Belakang Gedung (Simulasi siluet background) */}
+        <div className="absolute bottom-0 right-0 w-2/3 h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] z-0 pointer-events-none"></div>
+
+        {/* Konten Kiri (Teks & Tombol) */}
+        <div className="flex-1 z-10 relative">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+            Katalog Mobil <br />
+            Indonesia <br />
+            Lengkap & Terupdate
+          </h1>
+          <p className="text-gray-500 text-lg mb-8 max-w-md leading-relaxed">
+            Temukan informasi mobil terbaru, harga, spesifikasi, foto, dan perbandingan dari berbagai merek mobil favorit di Indonesia.
           </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+          
+          <div className="flex gap-4 mb-10">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg shadow-blue-200 transition-all flex items-center gap-2">
+              <Search size={20} /> Jelajahi Katalog
+            </button>
+            <button className="bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 shadow-sm">
+              <LayoutGrid size={20} /> Bandingkan Mobil
+            </button>
+          </div>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          {/* Statistik Info */}
+          <div className="flex gap-8 border-t border-gray-200 pt-6">
+            <div>
+              <p className="text-xl font-bold text-gray-900 flex items-center gap-2"><CarFront size={20} className="text-blue-500"/> 150+</p>
+              <p className="text-sm text-gray-500">Merek Mobil</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-gray-900 flex items-center gap-2"><LayoutGrid size={20} className="text-blue-500"/> 1500+</p>
+              <p className="text-sm text-gray-500">Model Mobil</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-gray-900 flex items-center gap-2"><span className="text-blue-500">🕒</span> Terupdate</p>
+              <p className="text-sm text-gray-500">Setiap Hari</p>
+            </div>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {/* Konten Kanan (Gambar Mobil) */}
+        <div className="flex-1 z-10 relative">
+          {/* Menggunakan gambar mobil dari Unsplash sebagai placeholder yang mirip dengan gambar aslinya */}
+          <img 
+            src={mobilHero} 
+            alt="Hero Car" 
+            className="w-full h-auto drop-shadow-2xl object-contain rounded-xl mix-blend-multiply"
+          />
+        </div>
+      </main>
+
+    </div>
+  );
 }
-
-export default App
