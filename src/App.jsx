@@ -17,6 +17,37 @@ const merekPopuler = [
   "Toyota", "Honda", "Daihatsu", "Suzuki", "Mitsubishi", "Nissan", "Wuling", "BYD"
 ];
 
+const mobilPopuler = [
+  { merk: "Toyota", model: "Avanza", varian: "1.5 G M/T", harga: "Rp 242.100.000", img: "https://placehold.co/300x200?text=Avanza" },
+  { merk: "Honda", model: "Brio", varian: "Satya S M/T", harga: "Rp 165.900.000", img: "https://placehold.co/300x200?text=Brio" },
+  { merk: "Toyota", model: "Raize", varian: "1.2 G CVT", harga: "Rp 235.000.000", img: "https://placehold.co/300x200?text=Raize" },
+  { merk: "Daihatsu", model: "Sigra", varian: "1.2 R M/T", harga: "Rp 137.200.000", img: "https://placehold.co/300x200?text=Sigra" }
+];
+
+const artikelTerbaru = [
+  {
+    kategori: "Berita",
+    judul: "Daftar Mobil SUV Terbaru 2024 di Indonesia",
+    deskripsi: "Intip daftar SUV terbaru yang meluncur di Indonesia tahun 2024, lengkap dengan harga dan spesifikasinya.",
+    tanggal: "20 Mei 2024",
+    img: "https://placehold.co/400x250?text=SUV+Terbaru"
+  },
+  {
+    kategori: "Panduan",
+    judul: "Cara Kredit Mobil yang Benar untuk Pemula",
+    deskripsi: "Panduan lengkap cara kredit mobil untuk pemula agar proses disetujui dan tidak memberatkan keuangan.",
+    tanggal: "18 Mei 2024",
+    img: "https://placehold.co/400x250?text=Kredit+Mobil"
+  },
+  {
+    kategori: "Tips & Trik",
+    judul: "Perbedaan Mobil LCGC dan City Car",
+    deskripsi: "Memahami perbedaan LCGC dan city car dari segi harga, performa, hingga efisiensi bbm.",
+    tanggal: "15 Mei 2024",
+    img: "https://placehold.co/400x250?text=LCGC+vs+City+Car"
+  }
+];
+
 export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-gray-800">
@@ -201,9 +232,206 @@ export default function App() {
           </div>
         </div>
 
-      </div>
-      {/* --- BERHENTI DI SINI --- */}
+        {/* 4. MOBIL TERPOPULER */}
+        <div className="mt-12 mb-12">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-gray-900">Mobil Terpopuler</h2>
+            <a href="#" className="text-sm font-semibold text-blue-600 flex items-center gap-1 hover:text-blue-800">
+              Lihat Semua <span className="text-lg leading-none">&rarr;</span>
+            </a>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative">
+            {mobilPopuler.map((mobil, index) => (
+              <div key={index} className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-lg transition-shadow cursor-pointer flex flex-col">
+                <img src={mobil.img} alt={mobil.model} className="w-full h-32 object-contain mb-4" />
+                <h3 className="text-sm font-bold text-gray-900">{mobil.merk} {mobil.model}</h3>
+                <p className="text-xs text-gray-500 mt-1 mb-3">{mobil.varian}</p>
+                <p className="text-sm font-bold text-blue-600 mt-auto">{mobil.harga}</p>
+                <p className="text-[10px] text-gray-400 mt-1">Harga OTR Jakarta</p>
+              </div>
+            ))}
+            
+            {/* Tombol panah slider (opsional, dummy dlu kayak di desain) */}
+            <div className="hidden md:flex absolute -right-4 top-1/2 transform -translate-y-1/2 gap-2">
+              <button className="w-8 h-8 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-800 hover:border-gray-400 shadow-sm">&lt;</button>
+              <button className="w-8 h-8 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-800 hover:border-gray-400 shadow-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
 
+        {/* 5. PERBANDINGAN MOBIL */}
+        <div className="mb-12">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-gray-900">Perbandingan Mobil</h2>
+            <a href="#" className="text-sm font-semibold text-blue-600 flex items-center gap-1 hover:text-blue-800">
+              Lihat Semua <span className="text-lg leading-none">&rarr;</span>
+            </a>
+          </div>
+          
+          <div className="bg-white border border-gray-100 rounded-2xl p-8 relative hover:shadow-md transition-shadow">
+            {/* Badge VS di tengah absolut */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white border-2 border-gray-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-lg shadow-sm z-10 pb-1">
+              VS
+            </div>
+
+            <div className="flex justify-between items-center w-full mb-6">
+              {/* Mobil Kiri */}
+              <div className="flex flex-col items-center w-5/12 text-center cursor-pointer">
+                <img src="https://placehold.co/300x150?text=Avanza" alt="Avanza" className="w-full h-32 object-contain mb-4" />
+                <h3 className="text-sm font-bold text-gray-900">Toyota Avanza</h3>
+                <p className="text-xs text-gray-500 mt-1 mb-2">1.5 G M/T</p>
+                <p className="text-sm font-bold text-blue-600">Rp 242.100.000</p>
+              </div>
+
+              {/* Mobil Kanan */}
+              <div className="flex flex-col items-center w-5/12 text-center cursor-pointer">
+                <img src="https://placehold.co/300x150?text=Mobilio" alt="Mobilio" className="w-full h-32 object-contain mb-4" />
+                <h3 className="text-sm font-bold text-gray-900">Honda Mobilio</h3>
+                <p className="text-xs text-gray-500 mt-1 mb-2">1.5 E CVT</p>
+                <p className="text-sm font-bold text-blue-600">Rp 259.000.000</p>
+              </div>
+            </div>
+
+            {/* Tombol Bandingkan */}
+            <div className="flex justify-center mt-2">
+              <button className="bg-[#1e293b] hover:bg-black text-white px-8 py-3 rounded-lg font-semibold text-sm transition-colors">
+                Bandingkan Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* 6. ARTIKEL & BERITA TERBARU */}
+        <div className="mt-16 mb-12">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-gray-900">Artikel & Berita Terbaru</h2>
+            <a href="#" className="text-sm font-semibold text-blue-600 flex items-center gap-1 hover:text-blue-800">
+              Lihat Semua <span className="text-lg leading-none">&rarr;</span>
+            </a>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {artikelTerbaru.map((artikel, index) => (
+              <div key={index} className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col">
+                <img src={artikel.img} alt={artikel.judul} className="w-full h-44 object-cover" />
+                <div className="p-5 flex flex-col flex-grow">
+                  <div className="mb-3">
+                    <span className="inline-block bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded">
+                      {artikel.kategori}
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-bold text-gray-900 mb-2 leading-snug">{artikel.judul}</h3>
+                  <p className="text-xs text-gray-500 mb-4 line-clamp-3">{artikel.deskripsi}</p>
+                  <p className="text-[10px] text-gray-400 mt-auto">{artikel.tanggal}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div> 
+
+      {/* 7. SECTION FOOTER & NEWSLETTER */}
+      <footer className="bg-[#111827] text-white pt-12 pb-8 rounded-t-3xl mt-12 w-full">
+        <div className="max-w-7xl mx-auto px-8">
+          
+          {/* Box Newsletter (Dapatkan Info Mobil Terbaru) */}
+          <div className="bg-gradient-to-r from-[#1e293b] to-[#0f172a] rounded-2xl p-8 mb-16 flex flex-col md:flex-row items-center justify-between relative overflow-hidden border border-gray-800 shadow-xl">
+            <div className="z-10 md:w-1/2">
+              <h2 className="text-2xl font-bold mb-2">Dapatkan Info Mobil Terbaru</h2>
+              <p className="text-sm text-gray-400 mb-6">Berlangganan newsletter kami untuk mendapatkan update mobil terbaru, promo, dan tips otomotif setiap minggu.</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input 
+                  type="email" 
+                  placeholder="Masukkan email kamu..." 
+                  className="px-4 py-3 rounded-lg flex-1 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                />
+                <button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-sm transition-colors whitespace-nowrap">
+                  Berlangganan
+                </button>
+              </div>
+            </div>
+            {/* Dekorasi Gambar Mobil Footer (nanti diganti PNG transparan) */}
+            <div className="hidden md:block absolute right-[-5%] top-0 bottom-0 w-[55%]">
+              <img src="https://placehold.co/600x300/1e293b/475569?text=Mobil+Gelap+Keren" alt="Mobil Footer" className="w-full h-full object-cover opacity-60 mix-blend-lighten" />
+            </div>
+          </div>
+
+          {/* Navigasi Footer */}
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-8 border-b border-gray-800 pb-12">
+            
+            {/* Info Web */}
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-2 mb-4">
+                <CarFront className="text-blue-500" size={28} />
+                <span className="text-xl font-bold tracking-tight">KatalogMobil</span>
+              </div>
+              <p className="text-xs text-gray-400 mb-6 w-11/12 leading-relaxed">
+                Situs katalog mobil indonesia terlengkap yang menyajikan informasi mobil terbaru, harga, spesifikasi, berita, dan panduan otomotif untuk car enthusiast.
+              </p>
+              {/* Ikon Sosial Media (Dummy kotak-kotak) */}
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-gray-800 cursor-pointer transition-colors"><span className="text-[10px]">IG</span></div>
+                <div className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-gray-800 cursor-pointer transition-colors"><span className="text-[10px]">TW</span></div>
+                <div className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-gray-800 cursor-pointer transition-colors"><span className="text-[10px]">YT</span></div>
+                <div className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-gray-800 cursor-pointer transition-colors"><span className="text-[10px]">TK</span></div>
+              </div>
+            </div>
+
+            {/* Link Menu 1 */}
+            <div>
+              <h4 className="font-bold mb-4 text-sm">Katalog</h4>
+              <ul className="space-y-3 text-xs text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Semua Mobil</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Mobil Terbaru</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Mobil Populer</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Mobil LCGC</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Mobil Listrik</a></li>
+              </ul>
+            </div>
+
+            {/* Link Menu 2 */}
+            <div>
+              <h4 className="font-bold mb-4 text-sm">Merek</h4>
+              <ul className="space-y-3 text-xs text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Toyota</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Honda</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Daihatsu</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Suzuki</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Mitsubishi</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Lihat Semua</a></li>
+              </ul>
+            </div>
+
+            {/* Link Menu 3 */}
+            <div>
+              <h4 className="font-bold mb-4 text-sm">Informasi</h4>
+              <ul className="space-y-3 text-xs text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Berita Otomotif</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Tips & Panduan</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Perbandingan Mobil</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Promo & Diskon</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Sitemap</a></li>
+              </ul>
+            </div>
+
+            {/* Link Menu 4 */}
+            <div>
+              <h4 className="font-bold mb-4 text-sm">Bantuan</h4>
+              <ul className="space-y-3 text-xs text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Tentang Kami</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Kontak Kami</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div className="text-center text-[11px] text-gray-500 pt-6">
+            &copy; 2026 KatalogMobil Indonesia. All Rights Reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
