@@ -1,6 +1,21 @@
 import React from 'react';
-import { Search, MapPin, Moon, CarFront, LayoutGrid } from 'lucide-react';
+import { Search, MapPin, Moon, CarFront, LayoutGrid, ChevronDown} from 'lucide-react';
 import mobilHero from './assets/mobil-hero.png';
+import { dataMobil } from './data/mobil';
+import CarCard from './components/CarCard';
+
+const tipeBody = [
+  { tipe: "City Car", model: "45 Model", img: "https://placehold.co/150x80?text=City+Car" },
+  { tipe: "Hatchback", model: "120 Model", img: "https://placehold.co/150x80?text=Hatchback" },
+  { tipe: "MPV", model: "230 Model", img: "https://placehold.co/150x80?text=MPV" },
+  { tipe: "SUV", model: "350 Model", img: "https://placehold.co/150x80?text=SUV" },
+  { tipe: "Sedan", model: "150 Model", img: "https://placehold.co/150x80?text=Sedan" },
+  { tipe: "Pickup", model: "50 Model", img: "https://placehold.co/150x80?text=Pickup" },
+];
+
+const merekPopuler = [
+  "Toyota", "Honda", "Daihatsu", "Suzuki", "Mitsubishi", "Nissan", "Wuling", "BYD"
+];
 
 export default function App() {
   return (
@@ -98,6 +113,96 @@ export default function App() {
           />
         </div>
       </main>
+
+      <div className="max-w-7xl mx-auto px-8 pb-16">
+        
+        {/* 1. FILTER PENCARIAN */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 -mt-8 relative z-20 mb-12">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">Cari Mobil Impianmu</h2>
+          <p className="text-sm text-gray-500 mb-5">Filter berdasarkan kebutuhan dan temukan mobil yang tepat untukmu.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {/* Dropdown 1 */}
+            <div className="border border-gray-200 rounded-lg p-3 flex justify-between items-center cursor-pointer hover:border-blue-400">
+              <div>
+                <p className="text-xs text-gray-400 mb-0.5">Merek</p>
+                <p className="text-sm font-semibold text-gray-800">Pilih Merek</p>
+              </div>
+              <ChevronDown size={18} className="text-gray-400" />
+            </div>
+            {/* Dropdown 2 */}
+            <div className="border border-gray-200 rounded-lg p-3 flex justify-between items-center cursor-pointer hover:border-blue-400">
+              <div>
+                <p className="text-xs text-gray-400 mb-0.5">Tipe Body</p>
+                <p className="text-sm font-semibold text-gray-800">Pilih Tipe Body</p>
+              </div>
+              <ChevronDown size={18} className="text-gray-400" />
+            </div>
+            {/* Dropdown 3 */}
+            <div className="border border-gray-200 rounded-lg p-3 flex justify-between items-center cursor-pointer hover:border-blue-400">
+              <div>
+                <p className="text-xs text-gray-400 mb-0.5">Rentang Harga</p>
+                <p className="text-sm font-semibold text-gray-800">Pilih Harga</p>
+              </div>
+              <ChevronDown size={18} className="text-gray-400" />
+            </div>
+            {/* Dropdown 4 */}
+            <div className="border border-gray-200 rounded-lg p-3 flex justify-between items-center cursor-pointer hover:border-blue-400">
+              <div>
+                <p className="text-xs text-gray-400 mb-0.5">Jenis BBM</p>
+                <p className="text-sm font-semibold text-gray-800">Pilih Jenis BBM</p>
+              </div>
+              <ChevronDown size={18} className="text-gray-400" />
+            </div>
+            {/* Tombol Cari */}
+            <button className="bg-[#1e293b] hover:bg-black text-white rounded-lg flex items-center justify-center gap-2 font-semibold transition-colors">
+              <Search size={18} /> Cari Mobil
+            </button>
+          </div>
+        </div>
+
+        {/* 2. JELAJAHI BERDASARKAN TIPE BODY */}
+        <div className="mb-12">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-gray-900">Jelajahi Berdasarkan Tipe Body</h2>
+            <a href="#" className="text-sm font-semibold text-blue-600 flex items-center gap-1 hover:text-blue-800">
+              Lihat Semua <span className="text-lg leading-none">&rarr;</span>
+            </a>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+            {tipeBody.map((item, index) => (
+              <div key={index} className="bg-white border border-gray-100 rounded-xl p-4 flex flex-col items-center hover:shadow-md transition-shadow cursor-pointer">
+                <img src={item.img} alt={item.tipe} className="w-full h-16 object-cover mb-3 rounded" />
+                <h3 className="text-sm font-bold text-gray-900">{item.tipe}</h3>
+                <p className="text-xs text-gray-500">{item.model}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 3. MEREK POPULER (Fokus Jepang & China) */}
+        <div>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-gray-900">Merek Populer di Indonesia</h2>
+            <a href="#" className="text-sm font-semibold text-blue-600 flex items-center gap-1 hover:text-blue-800">
+              Lihat Semua <span className="text-lg leading-none">&rarr;</span>
+            </a>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-8 gap-4">
+            {merekPopuler.map((merek, index) => (
+              <div key={index} className="bg-white border border-gray-100 rounded-xl p-4 flex flex-col items-center justify-center h-24 hover:shadow-md transition-shadow cursor-pointer">
+                {/* Menggunakan inisial/teks sebagai placeholder logo */}
+                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center font-bold text-gray-400 mb-2">
+                  {merek.charAt(0)}
+                </div>
+                <span className="text-xs font-semibold text-gray-700">{merek}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+      {/* --- BERHENTI DI SINI --- */}
 
     </div>
   );
